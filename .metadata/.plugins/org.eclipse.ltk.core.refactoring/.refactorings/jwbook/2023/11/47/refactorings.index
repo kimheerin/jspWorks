@@ -1,4 +1,11 @@
-1700446479339	Rename resource 'Hello.jsp'
-1700446494606	Delete element
-1700447722025	Rename resource 'hellojava.jsp'
-1700447725840	Rename resource 'helloj.jsp'
+1700449495645	Move 'time.jsp' to 'webapp'
+1700449739320	Delete element
+1700455825956	Move 'footer.jsp' to 'include'
+1700457381815	Delete element
+1700536123865	Delete element
+1700541755042	Rename resource 'reponse'
+1700541859058	Copy file
+1700542714410	Delete element
+1700542742524	Copy file
+1700548881514	Delete element
+1700550695869	Copy file
