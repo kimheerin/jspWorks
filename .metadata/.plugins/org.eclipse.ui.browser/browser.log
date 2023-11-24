@@ -89,3 +89,4 @@
 11월 24, 2023 15:41:55.58 [4628:8780:1124/154155.057:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
 11월 24, 2023 15:44:14.120 [4628:8780:1124/154414.119:ERROR:connection_factory_impl.cc(428)] Failed to connect to MCS endpoint with error -106
 11월 24, 2023 15:44:18.181 [4628:13788:1124/154418.181:ERROR:device_event_log_impl.cc(192)] [15:44:18.181] USB: usb_service_win.cc:104 SetupDiGetDeviceProperty({{A45C254E-DF1C-4EFD-8020-67D146A850E0}, 6}) failed: 요소가 없습니다. (0x490)
+11월 24, 2023 17:06:23.72 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
