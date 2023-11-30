@@ -11,7 +11,7 @@
 	<jsp:include page="header.jsp" />
 	<div id="container">
 		<section id="main">
-			<h2>HELLO!</h2>
+			<h2>H E L L O !</h2>
 			<div class="main_img">
 				<img src="resources/img/sinsasnow.jpg" alt="신사">
 			</div>

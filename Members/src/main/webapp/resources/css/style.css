@@ -1,20 +1,30 @@
 @charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,500;0,600;1,200;1,300;1,500;1,600;1,900&display=swap");
 
 /* 공통 스타일 */
-*{margin: 0; padding: 0;}
+*{margin: 0; padding: 0; font-family: 'Noto Sans KR', sans-serif;}
 #container{width: 90%; margin: 30px auto 100px;}
 ul li{list-style: none;}
 a{text-decoration: none;}
+fieldset{border: 1.7px solid rgb(168, 168, 168);}
 
 /* header 스타일 */
 header{height: 80px; background: lightsteelblue;}
 header #logo{width: 20%; float: left; line-height: 80px;}
-#logo h1 a{color: steelblue; padding-left: 24px; font-style: italic;}
+#logo h1 a{
+	color: steelblue;
+	padding-left: 24px;
+	font-family: "Montserrat";
+	font-weight: bolder;}
 #logo h1 a:hover{color: rgb(104, 155, 198);}
 header nav{width: 70%; float: right;}
 #topMenu{line-height: 80px;}
 #topMenu li{float: left; margin: 0 10px;}
-#topMenu li a{color: rgb(55, 104, 145); padding: 0 20px;}
+#topMenu li a{
+	color: rgb(55, 104, 145);
+	padding: 0 60px;
+	font-weight: bolder;}
 #topMenu li a:hover{color: rgb(104, 155, 198);}
 
 /* footer 스타일 */
@@ -22,30 +32,98 @@ footer{height: 80px; border-top: 2px solid #ccc;}
 #bottomMenu{margin: 10px 20px;}
 #bottomMenu li{float: left; margin: 10px 0; padding: 0 10px;
       border-right: 1.5px solid #ccc;}
-#bottomMenu li a{color: #444;}
+#bottomMenu li a{color: #444; }
 #bottomMenu li:last-child{border: none;}
 
 /* main 스타일 */
-#main{margin: 0 auto; text-align: center;}
+#main{margin: 0 auto; text-align: center; background-color: rgb(179, 198, 223);}
 #main .main_img{margin: 10px;}
 #main .main_img img{border-radius: 5px;}
 
 /* 회원 목록 스타일 */
 #memberList{width: 700px; margin: 20px auto;}
-#memberList table{width: 700px; margin: 20px auto;}
+#memberList table{width: 730px; margin: 30px auto;}
 #memberList table, th, td{border: 1px solid #ccc;
       border-collapse: collapse; text-align: center;}
+#memberList .logout{text-align: right; margin-right: -28px;}
 table, th, td{padding: 10px;}
 table thead{text-align: center; background: #eee;}
+table td button{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding: 10px 20px;
+	width: 100px;
+    height: 40px; background-color: #eee;
+    border: 1px solid rgb(168, 168, 168);
+    background-color: #fff;
+    }
 
 /* 회원 가입 스타일 */
 #join{width: 700px; margin: 20px auto;}
 #join form{margin: 20px auto;}
 form ul li{margin: 20px;}
-form button{margin-top: 16px;}
-form .button button{padding: 5px;}
-form label{width: 180px; float:left; padding-left: 16px}
+form button{
+	margin-top: 16px;
+	padding: 10px 20px;
+	width: 100px;
+    height: 40px; background-color: #eee;
+    border: 1px solid rgb(168, 168, 168);
+    background-color: #fff;}
+form .button button{padding: 5px; padding: 10px 20px;}
+form label{margin-left: 169px; width: 90px; float: left; text-align: center;}
 form input{
-	padding: 3px;
+	padding: 1px;
 	border: none;
-    border-bottom: 1.5px solid rgb(168, 168, 168);}
+    border-bottom: 1.5px solid rgb(168, 168, 168);
+    outline: none;
+    caret-color: rgb(168, 168, 168);
+    font-size: 15px;}
+   
+/* 회원 정보 스타일 */
+#memberview{width: 460px; margin: 20px auto;}
+#memberview table{width: 460px; margin: 30px auto;}
+#memberview table, th, td{border: 1px solid #ccc;
+      border-collapse: collapse; text-align: center;}
+table, th, td{padding: 10px;}
+
+/* 로그인 스타일 */
+#login{width: 700px; margin: 20px auto;}
+#login form{margin: 20px auto;}
+#login form ul li{margin: 20px;}
+#login .error{color: #b00; margin-top: 16px; font-size: 0.9em;}
+
+/* 게시글 목록 스타일 */
+#boderList{width: 700px; margin: 20px auto;}
+#boderList table{width: 730px; margin: 30px auto;}
+#boderList table, th, td{border: 1px solid #ccc;
+      border-collapse: collapse; text-align: center;}
+table, th, td{padding: 10px;}
+table thead{text-align: center; background: #eee;}
+div button{
+	margin-top: -10px;
+	margin-bottom: 10px;
+	padding: 10px 20px;
+	width: 100px;
+    height: 40px; background-color: #eee;
+    border: 1px solid rgb(168, 168, 168);
+    background-color: #fff;}
+
+/* 게시글 작성 스타일 */
+#wirteform{width: 600px; margin: 20px auto;}
+#wirteform table{width: 600px; margin: 30px auto;}
+#wirteform table, th, td{border: 1px solid #ccc;
+      border-collapse: collapse; text-align: center;}
+table, th, td{padding: 10px;}
+#writeform h2{margin-left: 590px; margin-bottom: 10px;}
+table{margin-left: 580px; margin-bottom: 30px; margin-top: 15px;}
+table thead{text-align: center; background: #eee;}
+#wirteform button{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding: 10px 20px;
+	width: 100px;
+    height: 40px; background-color: #eee;
+    border: 1px solid rgb(168, 168, 168);
+    background-color: #fff;}
+#writeform input{width: 540px; height: 25px; padding: 5px;}
+#writeform textarea{width: 540px; height: 300px; padding: 5px;}

@@ -69,6 +69,8 @@ C:\jspWorks\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\4044361229.ind
 \jwbook\src\main\java
 C:\jspWorks\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3494950772.index
 \AddressBook2\src\main\java
+C:\jspWorks\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\192411262.index
+\Members\src\main\java
 C:\jspWorks\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\403478192.index
 \AddressBook2\src\main\java
 C:\jspWorks\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1933858067.index

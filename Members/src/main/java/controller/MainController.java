@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -9,18 +10,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import board.Board;
+import board.BoardDAO;
 import member.Member;
 import member.MemberDAO;
 
-@WebServlet("*.do")
+@WebServlet("*.do")	// '/' 이하의 경로에서 do로 끝나는 확장자는 모두 ??
 public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 10L;
-	
 	MemberDAO mDAO;
+	BoardDAO bDAO;
        
     public MainController() {
         mDAO = new MemberDAO();
+        bDAO = new BoardDAO();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -30,6 +35,8 @@ public class MainController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//한글 인코딩
 		request.setCharacterEncoding("utf-8");
+		//응답할 컨텐츠 유형
+		response.setContentType("text/html; charset=utf-8");
 		
 		//경로 설정
 		//uri - 컨텍스트(/) + 파일(.do)
@@ -39,6 +46,11 @@ public class MainController extends HttpServlet {
 		System.out.println(command);
 		
 		String nextPage = "";
+		//세션 객체 생성
+		HttpSession session = request.getSession();
+		
+		//view에 등록 객체 생성
+		PrintWriter out = response.getWriter();
 		
 		if(command.equals("/memberlist.do")) {
 			//회원 정보를 db에서 가져옴
@@ -66,15 +78,84 @@ public class MainController extends HttpServlet {
 	        m.setName(name);
 	        m.setEmail(email);
 	        m.setGender(gender);
-			
+			//DB에 저장
 			mDAO.insertMember(m);
-			
+			//회원 가입 후 이동
 			nextPage = "index.jsp";
+
+		}else if(command.equals("/memberview.do")) {
+			String id = request.getParameter("id");
+			
+			Member member = mDAO.getMember(id);
+			
+			//모델 생성
+			request.setAttribute("member", member);
+			
+			nextPage = "/member/memberview.jsp";
+			
+		}else if(command.equals("/loginform.do")){
+			nextPage = "/member/loginform.jsp";
+		}else if(command.equals("/login.do")){
+			//계정과 암호 파라미터 받기
+			String id = request.getParameter("id");
+			String passwd = request.getParameter("passwd");
+			//빈 객체를 생성하여 계정 및 암호 세팅
+			Member m = new Member();
+			m.setId(id);
+			m.setPasswd(passwd);
+			//로그인 인증
+			boolean result = mDAO.checkLogin(m);
+			if(result) {	//result가 true일 때 세션 발급
+				session.setAttribute("sessionid", id);
+				//로그인 후 페이지 이동
+				nextPage = "/index.jsp";
+			}else {
+				//에러 알림창 출력(자바스크립트)
+				String error = "계정 및 암호가 올바르지 않습니다.";
+				request.setAttribute("error", error);
+				//에러 발생 후 페이지 이동
+				nextPage ="/member/loginform.jsp";
+				System.out.println("에러");
+
+			}
+		}else if(command.equals("/logout.do")) {
+			session.invalidate();	//모든 세션 삭제
+			nextPage = "/index.jsp";
 		}
 		
-		RequestDispatcher dispatch = 
-				request.getRequestDispatcher(nextPage);
-		dispatch.forward(request, response);
-	}
+		//게시판
+		if(command.equals("/boardlist.do")) {
+			//db에서 list를 가져옴
+			List<Board> boardList = bDAO.getBoardList();
+			//모델로 생성
+			request.setAttribute("boardList", boardList);
 
+			nextPage = "/board/boardlist.jsp";
+		}else if(command.equals("/writeform.do")){
+			nextPage = "/board/writeform.jsp";
+		}else if(command.equals("/write.do")){
+			//폼 데이터 받기
+			String title = request.getParameter("title");
+			String content = request.getParameter("content");
+			//세션 가져오기
+			String id = (String)session.getAttribute("sessionid");
+			
+			//db 저장
+			Board b = new Board();
+			b.setTitle(title);
+			b.setContent(content);
+			b.setId(id);
+			//write 메서드 실행
+			bDAO.write(b);
+		}
+		
+		if(command.equals("/write.do")) {
+			//새로고침 중복 생성 방지
+			response.sendRedirect("/boardlist.do");
+		}else {
+			RequestDispatcher dispatch = 
+					request.getRequestDispatcher(nextPage);
+			dispatch.forward(request, response);
+		}
+	}
 }
