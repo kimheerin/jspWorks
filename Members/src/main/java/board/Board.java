@@ -4,7 +4,8 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 public class Board implements Serializable {
-	private static final long Serializable = 12L;
+
+	private static final long serialVersionUID = 12L;
 	
 	private int bno;
 	private String title;

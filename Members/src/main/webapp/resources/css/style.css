@@ -36,9 +36,13 @@ footer{height: 80px; border-top: 2px solid #ccc;}
 #bottomMenu li:last-child{border: none;}
 
 /* main 스타일 */
-#main{margin: 0 auto; text-align: center; background-color: rgb(179, 198, 223);}
-#main .main_img{margin: 10px;}
-#main .main_img img{border-radius: 5px;}
+#main{width: 1000px; height: 600px; margin: 40px auto;}
+#main h1{color: violet; font-style: italic; padding: 20px 60px;}
+#main .main_img{margin: 16px 30px; float: left;}
+#main .main_img img{border-radius: 10px;}
+#main .newboard{margin: 20px;}
+#main .newboard h3{margin: 20px;}
+#main .newboard p{line-height: 2.5;}
 
 /* 회원 목록 스타일 */
 #memberList{width: 700px; margin: 20px auto;}
@@ -100,7 +104,6 @@ table, th, td{padding: 10px;}
 table, th, td{padding: 10px;}
 table thead{text-align: center; background: #eee;}
 div button{
-	margin-top: -10px;
 	margin-bottom: 10px;
 	padding: 10px 20px;
 	width: 100px;
@@ -126,4 +129,36 @@ table thead{text-align: center; background: #eee;}
     border: 1px solid rgb(168, 168, 168);
     background-color: #fff;}
 #writeform input{width: 540px; height: 25px; padding: 5px;}
-#writeform textarea{width: 540px; height: 300px; padding: 5px;}
+#writeform textarea{width: 540px; height: 300px; padding: 10px;}
+
+/* 게시글 상세 보기 스타일 */
+#board_view{width: 600px; margin: 20px auto;}
+#board_view table{width: 600px; margin: 30px auto;}
+#board_view table, th, td{border: 1px solid #ccc;
+      border-collapse: collapse; text-align: center;}
+table, th, td{padding: 10px;}
+/* #board_view h2{margin-left: 590px; margin-bottom: 10px;} */
+table{margin-left: 580px; margin-bottom: 30px; margin-top: 15px;}
+table thead{text-align: center; background: #eee;}
+#board_view button{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding: 10px 20px;
+	width: 100px;
+    height: 40px; background-color: #eee;
+    border: 1px solid rgb(168, 168, 168);
+    background-color: #fff;}
+#board_view input{width: 540px; height: 25px; padding: 5px; font-size: 0.9em;}
+#board_view textarea{width: 540px; height: 300px; padding: 5px; font-size: 0.9em;}
+#replyform textarea{width: 600px; height: 50px;}
+
+/* 댓글 영역 스타일 */
+#board_view .reply{border-top: 2px dotted #ccc; margin: 10px;}
+#board_view .reply p{margin: 20px 0; font-size: 0.9em; color: #444;}
+/* 댓글 내용 - 줄바꿈하기 : white-space:pre-line */
+#board_view .reply p:nth-of-type(1){white-space: pre-line; line-height: 1.5px;}
+#replyform textarea{margin-top: 10px;}
+.replylogin{background-color: #eee; margin: 10px 0;
+	padding: 16px; text-align: center;}
+.replylogin a{color: rgb(170, 170, 170);}
+.replylogin a:hover{text-decoration: none;}

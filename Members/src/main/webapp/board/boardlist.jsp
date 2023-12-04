@@ -28,9 +28,22 @@
 					<c:forEach items="${boardList}" var="b">
 						<tr>
 							<td>${b.bno}</td>
-							<td>${b.title}</td>
-							<td><fmt:formatDate value="${b.createDate}"
-										pattern="yyyy-MM-dd HH:mm" /> </td>
+							<td><a href="/boardview.do?bno=${b.bno}">${b.title}</a></td>
+							<!-- 수정일이 있을 경우 수정 날짜값 적용, 없을 경우 작성일로 표시 -->
+
+							<td>
+							<c:choose>
+								<c:when test="${not empty b.modifyDate}">
+									<fmt:formatDate value="${b.modifyDate}"
+											pattern="yyyy-MM-dd HH:mm:ss" />
+								</c:when>
+								<c:otherwise>
+									<fmt:formatDate value="${b.createDate}"
+										pattern="yyyy-MM-dd HH:mm:ss" />
+								</c:otherwise>
+							</c:choose>
+							</td>
+							
 							<td>${b.hit}</td>
 							<td>${b.id}</td>
 						</tr>
@@ -38,7 +51,7 @@
 				</tbody>
 			</table>
 			<!-- 글쓰기 버튼 -->
-			<div class="button2">
+			<div>
 				<a href="/writeform.do">
 					<button type="button">작성</button>
 				</a>

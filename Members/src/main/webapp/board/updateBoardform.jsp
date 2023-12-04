@@ -6,35 +6,35 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시글 작성</title>
+<title>게시글 수정</title>
 <link rel="stylesheet" href="resources/css/style.css">
 </head>
 <body>
-	<c:if test="${empty sessionid}">
-		<script type="text/javascript">
-		alert("로그인이 필요합니다.");
-		location.href="/loginform.do";
-		</script>
-	</c:if>
 	<jsp:include page="../header.jsp" />
 	<div id="container">
 		<section id="writeform">
-			<h2>게시글 작성</h2>
-			<form action="/write.do" method="post">
+			<h2>게시글 수정</h2>
+			<form action="/updateboard.do" method="post">
+				<!-- ui를 만들지 않고 데이터를 숨겨서 보냄 -->
+				<input type="hidden" name="bno" value="${board.bno}">
 				<table>
 					<tbody>
 						<tr>
 							<td><input type="text" name="title"
-									placeholder="제목" required></td>
+									value="${board.title}">
+							</td>
 						</tr>
 						<tr>
 							<td><textarea rows="7" cols="100"
-									name="content" placeholder="&nbsp;내용"></textarea></td>
+									name="content">${board.content}</textarea>
+							</td>
 						</tr>
 						<tr>
 							<td>
-								<button type="submit">등록</button>
-								<button type="reset">취소</button>
+								<button type="submit">저장</button>
+								<a href="/boardlist.do">
+								<button type="button">취소</button>
+								</a>
 							</td>
 						</tr>
 					</tbody>
