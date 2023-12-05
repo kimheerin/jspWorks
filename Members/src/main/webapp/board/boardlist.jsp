@@ -51,7 +51,7 @@
 				</tbody>
 			</table>
 			<!-- 글쓰기 버튼 -->
-			<div>
+			<div id="write_button">
 				<a href="/writeform.do">
 					<button type="button">작성</button>
 				</a>

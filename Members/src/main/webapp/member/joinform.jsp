@@ -5,77 +5,44 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원 목록</title>
+<title>회원 가입</title>
+<script src="../resources/js/jquery-3.7.1.js"></script>
 <link rel="stylesheet" href="resources/css/style.css">
-	<jsp:include page="../header.jsp" />
-<script>
-   function checkMember() {
-      //alert("test");
-      let form = document.member;
-      let id = form.id.value;
-      let pw1 = form.passwd.value;
-      let pw2 = form.passwd2.value;
-      let name = form.name.value; 
-      
-      // 정규표현식
-      // 비밀번호
-      let regexPw1 = /[0-9]+/; // 숫자
-      let regexPw2 = /[a-zA-Z]+/; // 영문자
-      let regexPw3 = /[~!@#$%^&*()_+]+/; // 특수문자
-      
-      // 이름
-      let regexName = /^[가-힣]+$/;
-      
-      if(id.length < 4 || id.length > 15){
-         alert("아이디는 4~15자까지 입력 가능합니다");
-         id.select;
-         return false;
-      }else if(pw1.length < 8 || regexPw1.test(pw1) || 
-            regexPw1.test(pw1) || regexPw1.test(pw1)){
-         alert("비밀번호는 영문자, 숫자, 특수문자 포함 8자 이상 입력 가능");
-         pw1.select;
-         return false;
-      }else if(pw1 != pw2){
-         alert("비밀번호를 동일하게 입력해 주세요");
-         pw2.select;
-         return false;
-      }else if(!regexName.test(name)){
-         alert("이름은 한글로 입력해 주세요");
-         name.select;
-         return false;
-      }else{
-         form.submit(); // 오류가 없으면 폼을 메인 컨트롤러로 전송
-      }
-   }
-</script>
+<script src="../resources/js/validation.js"></script>
 </head>
 <body>
+<jsp:include page="../header.jsp" />
 	<div id="container">
 		<section id="join">
 			<h2>회원 가입</h2>
-			<form action="insertmember.do" method="post">
+			<form action="insertmember.do" method="post" name="member">
 				<fieldset>
 					<ul>
 						<li>
-							<label for="id">계정</label>
-							<input type="text" id="id" name="id"
-							placeholder="계정은 4~15자리까지 입력 가능합니다.">
+							<label for="t_id">계정</label>
+							<input type="text" id="t_id" name="id"
+							placeholder="영문, 숫자 4~15자">
+	 						<button type="button" id="btnChk" value="N" class="btn_Check"
+   							onclick="checkId()"> 확인 </button>
+    						<!-- <input type="button" id="btnChk" value=" 확인 " class="btn_Check"
+   							onclick="checkId()"> -->
+  							<p id="message"></p>
 						</li>
 						<li>
 							<label for="passwd">암호</label>
 							<input type="password" id="passwd" name="passwd"
-							placeholder="비밀번호는 영문, 숫자, 특수문자를 포함하여 8자 이상 입력 가능">
+							placeholder="영문, 숫자, 특수문자 포함 8자 이상">
 							
 						</li>
 						<li>
 							<label for="passwd2">암호 확인 </label>
 							<input type="password" id="passwd2" name="passwd2" 
-							placeholder="비밀번호를 동일하게 입력해주세요">
+							placeholder="암호 재입력">
 						</li>
 						<li>
 							<label for="name">이름</label>
 							<input type="text" name="name" id="name"
-							placeholder="ex. 홍길동" placeholder="이름은 한글로 입력해 주세요">
+							placeholder="ex. 홍길동" placeholder="이름은 한글로 입력해 주세요.">
 						</li>
 						<li>
 							<label for="email">E-mail</label>

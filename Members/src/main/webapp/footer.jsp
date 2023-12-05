@@ -5,6 +5,6 @@
 		<li><a href="">커뮤니티</a></li>
 		<li><a href="">개인정보 처리방침</a></li>
 		<li><a href="">이용약관</a></li>
-		<li><a href="">사이트 맵</a></li>
+		<li><a href="">사이트맵</a></li>
 	</ul>
 </footer>

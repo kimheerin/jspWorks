@@ -34,6 +34,25 @@ public class MainController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
+		//한글 인코딩 처리
+		request.setCharacterEncoding("utf-8");
+		
+		//컨텐츠 응답
+		response.setContentType("text/html; charset=utf-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		//메시지 받기
+		String id = request.getParameter("id");
+		
+		MemberDAO dao = new MemberDAO();
+		Boolean result = dao.getDuplicatedId(id);
+		if(result) {
+			//중복 데이터가 있으면
+			out.print("not_usable");
+		}else {
+			out.print("usable");
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

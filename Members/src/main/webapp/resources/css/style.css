@@ -36,6 +36,7 @@ footer{height: 80px; border-top: 2px solid #ccc;}
 #bottomMenu li:last-child{border: none;}
 
 /* main 스타일 */
+#main_h2{margin-left: 35px;}
 #main{width: 1000px; height: 600px; margin: 40px auto;}
 #main h1{color: violet; font-style: italic; padding: 20px 60px;}
 #main .main_img{margin: 16px 30px; float: left;}
@@ -66,6 +67,7 @@ table td button{
 #join{width: 700px; margin: 20px auto;}
 #join form{margin: 20px auto;}
 form ul li{margin: 20px;}
+div #message{margin-left: 260px; font-size: 0.8em; color: #b00;}
 form button{
 	margin-top: 16px;
 	padding: 10px 20px;
@@ -73,7 +75,7 @@ form button{
     height: 40px; background-color: #eee;
     border: 1px solid rgb(168, 168, 168);
     background-color: #fff;}
-form .button button{padding: 5px; padding: 10px 20px;}
+form .button button{margin-top: -2px; padding: 10px 20px;}
 form label{margin-left: 169px; width: 90px; float: left; text-align: center;}
 form input{
 	padding: 1px;
@@ -82,6 +84,14 @@ form input{
     outline: none;
     caret-color: rgb(168, 168, 168);
     font-size: 15px;}
+#passwd::placeholder, #t_id::placeholder, #passwd2::placeholder,
+#name::placeholder{font-size: 0.8em}
+button#btnChk.btn_Check{
+	margin: 0;
+	padding: 0;
+	width: 40px;
+	height: 30px;
+	font-size: 0.7em;}
    
 /* 회원 정보 스타일 */
 #memberview{width: 460px; margin: 20px auto;}
@@ -110,6 +120,7 @@ div button{
     height: 40px; background-color: #eee;
     border: 1px solid rgb(168, 168, 168);
     background-color: #fff;}
+div#write_button{top: -15px; position: relative;}
 
 /* 게시글 작성 스타일 */
 #wirteform{width: 600px; margin: 20px auto;}

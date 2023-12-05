@@ -16,7 +16,6 @@
     <fullyQualifiedTypeName name="java.lang.reflect.Member"/>
     <fullyQualifiedTypeName name="member.Member"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
-    <fullyQualifiedTypeName name="java.io.PrintWriter"/>
     <fullyQualifiedTypeName name="java.sql.Timestamp"/>
     <fullyQualifiedTypeName name="java.sql.Time"/>
     <fullyQualifiedTypeName name="java.awt.BorderLayout"/>
@@ -28,9 +27,10 @@
     <fullyQualifiedTypeName name="java.security.Timestamp"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
-    <fullyQualifiedTypeName name="member.MemberDAO"/>
     <fullyQualifiedTypeName name="board.BoardDAO"/>
     <fullyQualifiedTypeName name="reply.Reply"/>
     <fullyQualifiedTypeName name="reply.ReplyDAO"/>
+    <fullyQualifiedTypeName name="java.io.PrintWriter"/>
     <fullyQualifiedTypeName name="common.JdbcUtil"/>
+    <fullyQualifiedTypeName name="member.MemberDAO"/>
 </qualifiedTypeNameHistroy>
