@@ -10,12 +10,12 @@
 <link rel="stylesheet" href="resources/css/style.css">
 </head>
 <body>
-<%-- 	<c:if test="${empty sessionid}">
+ 	<c:if test="${empty sessionid}">
 		<script type="text/javascript">
 		alert("로그인이 필요합니다.");
 		location.href="/loginform.do";
 		</script>
-	</c:if> --%>
+	</c:if>
 	<jsp:include page="../header.jsp" />
 	<div id="container">
 		<section id="board_view">
@@ -30,6 +30,22 @@
 							<td><textarea rows="7" cols="100"
 									name="content">${board.content}</textarea></td>
 						</tr>
+						
+						<tr>
+               				<td>
+               				<c:choose>
+               					<c:when test="${not empty ${board.filename}">
+               						${board.filename}<a href="filedown.do?filename=${board.filename}">
+               								&nbsp;[다운로드]</a>
+               					</c:when>
+               					<c:otherwise>
+               						<c:out value="첨부파일: "></c:out>
+               					</c:otherwise>
+               				</c:choose>
+               				
+                			</td>
+              			</tr>
+						
 						<tr>
 							<td>
 								<c:if test="${sessionid eq board.id}">

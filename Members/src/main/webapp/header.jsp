@@ -18,7 +18,7 @@
 	</c:when>
 	<c:otherwise>
 		<ul id="topMenu">
-			<li><a href="/logout.do">${sessionid}님 | 로그아웃</a></li>
+			<li><a href="/logout.do">${sessionName}님 | 로그아웃</a></li>
 			<li><a href="/memberview.do?id=${sessionid}">마이페이지</a></li>
 			<li><a href="/boardlist.do">게시판</a></li>
 			<li><a href="/memberlist.do">회원목록</a></li>

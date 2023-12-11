@@ -1,7 +1,9 @@
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -11,6 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import board.Board;
 import board.BoardDAO;
@@ -117,6 +122,11 @@ public class MainController extends HttpServlet {
 	        m.setGender(gender);
 			//DB에 저장
 			mDAO.insertMember(m);
+			
+			//자동 로그인
+			session.setAttribute(("sessionId"), m.getId());	//아이디를 가져와서 sessionId(세션명) 발급
+			session.setAttribute(("sessionName"), m.getName()); //이름을 가져와서 sessionName 발급
+			
 			//회원 가입 후 이동
 			nextPage = "index.jsp";
 
@@ -140,10 +150,13 @@ public class MainController extends HttpServlet {
 			Member m = new Member();
 			m.setId(id);
 			m.setPasswd(passwd);
+			
 			//로그인 인증
-			boolean result = mDAO.checkLogin(m);
-			if(result) {	//result가 true일 때 세션 발급
-				session.setAttribute("sessionid", id);
+			Member member = mDAO.checkLogin(m);
+			String name = member.getName();
+			if(name != null) {	//result가 true일 때 세션 발급
+				session.setAttribute("sessionid", id);	//아이디 세션
+				session.setAttribute("sessionName", name);	//이름 세션
 				//로그인 후 페이지 이동
 				nextPage = "/index.jsp";
 			}else {
@@ -171,16 +184,44 @@ public class MainController extends HttpServlet {
 		}else if(command.equals("/writeform.do")){
 			nextPage = "/board/writeform.jsp";
 		}else if(command.equals("/write.do")){
-			//폼 데이터 받기
-			String title = request.getParameter("title");
-			String content = request.getParameter("content");
+		
+			String realFolder = "C:\\jspWorks\\Members\\src\\main\\webapp\\upload";
+			int maxSize = 10*1024*1024;	//10MB
+			String encType = "utf-8";	//파일명 한글 인코딩
+			DefaultFileRenamePolicy policy = new DefaultFileRenamePolicy();
+			
+			//5가지 연자
+			MultipartRequest multi = new MultipartRequest (request, realFolder,
+									maxSize, encType, policy);
+			
+			
+			
+			//폼 일반 속성 데이터 받기
+			String title = multi.getParameter("title");
+			String content = multi.getParameter("content");
 			//세션 가져오기
 			String id = (String)session.getAttribute("sessionid");
+			
+			
+			
+			
+			//file 파라미터 속성
+			Enumeration<?> files = multi.getFileNames();
+			String filename = "";
+			
+			while(files.hasMoreElements()) { //파일명이 있는 동안 반복
+				String userFilename = (String)files.nextElement();
+					//실제 저장될 이름
+					filename = multi.getFilesystemName(userFilename);
+			}
+
+			
 			
 			//db 저장
 			Board b = new Board();
 			b.setTitle(title);
 			b.setContent(content);
+			b.setFilename(filename);
 			b.setId(id);
 			//write 메서드 실행
 			bDAO.write(b);
